@@ -1,0 +1,38 @@
+// name: dynamo_get
+// outputs: 1
+var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+
+ var params = {
+  Key: {
+   "id": {
+     S: "fromNode"
+    }
+  }, 
+  TableName: "miya_table1"
+ };
+ dynamodb.getItem(params, function(err, data) {
+   if (err) 
+   {
+       console.log(err, err.stack); // an error occurred
+   }
+   else
+   {
+       console.log(data);
+       node.warn(data);
+   }           // successful response
+   /*
+   data = {
+    Item: {
+     "AlbumTitle": {
+       S: "Songs About Life"
+      }, 
+     "Artist": {
+       S: "Acme Band"
+      }, 
+     "SongTitle": {
+       S: "Happy Day"
+      }
+    }
+   }
+   */
+ });
